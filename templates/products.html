@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>product page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <form method="get" id="search-bar" action="{{ url_for('products') }}">
+            <label for="search">search:</label>
+            <input type="text" id="search" name="search" value="{{ search }}">
+            <button type="submit" id="submit-search">⌕</button>
+        </form>
+        <form method="get" action="{{ url_for('products') }}">
+            <label for="sort">Sort by:</label>
+            <select id="sort" name="sort">
+                <option value="" {% if sort =="" %}selected{% endif %}>none</option>
+                <option value="name" {% if sort =="name" %}selected{% endif %}>Name A-Z</option>
+                <option value="price_low" {% if sort =="price_low" %}selected{% endif %}>Price Low-High</option>
+                <option value="price_high" {% if sort =="price_high" %}selected{% endif %}>Price High-Low</option>
+            </select>
+            <button type="submit">Apply</button>
+        <a href="{{ url_for('basket') }}">basket</a>
+        </form>
+
+    </header>
+
+
+    <div id="product-display">
+
+        {% for product in products %}
+            <div>
+                <h2>{{ product["name"] }}</h2>
+                <p>{{ product["description"] }}</p>
+                <p>£{{ product["price"] }}</p>
+                <p>Stock: {{ product["stock"] }}</p>
+                <a href="{{url_for('product_detail', id=product['productID']) }}">View</a><br>
+                <a href="{{url_for('edit_product', id=product['productID']) }}">edit</a><br>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

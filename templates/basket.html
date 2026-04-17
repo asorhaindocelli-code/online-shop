@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>basket</title>
+</head>
+<body>
+    {% if basket_items %}
+        {% for item in basket_items %}
+            <h2>{{ item["name"] }}</h2>
+            <p>Quantity: {{ item["quantity"] }}</p>
+            <p>Subtotal: £{{ item[subtotal] }}</p>
+
+            <a href="{{ url_for('remove_from_basket', id=item['productID']) }}">Remove from basket</a>
+        {% endfor %}
+
+        <h2>Total: £{{ total }}</h2>
+    {% else %}
+        <p>your basket is empty</p>
+    {% endif %}
+
+</body>
+</html>

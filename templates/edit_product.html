@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Product</title>
+</head>
+<body>
+    <form method="post">
+        <label for="name">Product Name:</label><br>
+        <input type="text" id="name" name="name" value="{{ product['name'] }}" required><br><br>
+
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description" value="{{ product['description'] }}" required><br><br>
+
+        <label for="price">Price:</label><br>
+        <input type="number" id="price" name="price" step="0.01" value="{{ product['price'] }}" required><br><br>
+
+        <label for="stock">Stock:</label><br>
+        <input type="number" id="stock" name="stock" value="{{ product['stock'] }}" required><br><br>
+
+        <button type="submit">Confirm changes</button>
+    </form>
+    <a href="{{url_for('delete_product', id=product['productID']) }}">delete</a>
+</body>
+</html>
